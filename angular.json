@@ -7,7 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "standalone": true
+          "standalone": true,
+          "style": "scss"
         },
         "@schematics/angular:directive": {
           "standalone": true
@@ -35,7 +36,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -104,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "5b980d97-ede6-43a3-9b5d-49e856964231"
   }
 }
