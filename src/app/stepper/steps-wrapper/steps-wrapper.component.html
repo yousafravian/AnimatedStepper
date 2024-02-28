@@ -1,0 +1,30 @@
+<div class="host-spacer" [class.vertical]="direction ==='vertical'">
+  <div #stepperWrapper class="stepper-wrapper">
+    <div *ngIf="direction === 'vertical'" class="loader" [style.height]="'calc(' + (this.percentageStep * this.selectedIndex) + '%' + ' - 25px)'"></div>
+    <div *ngIf="direction === 'horizontal'" class="loader" [style.width]="'calc(' + (this.percentageStep * this.selectedIndex) + '%' + ' - 27px)'"></div>
+    <div
+      class="step-container"
+      *ngFor="let step of steps; let i = index"
+    >
+      <button
+        class="step"
+        [class.active]="i === selectedIndex"
+        [class.semi-active]="selectedIndex > i"
+        [disabled]="linear && i > (selectedIndex + 1)"
+        [class.disabled]="linear && i > (selectedIndex + 1)"
+        (click)="selectStepByIndex(i)"
+      >
+        <ng-container *ngIf="i < selectedIndex else nonCheckedTmpl">
+          <span class="material-symbols-outlined">done</span>
+        </ng-container>
+        <ng-template #nonCheckedTmpl>
+          <ng-container *ngIf="$any(step)['icon'] as icon"><span class="material-symbols-outlined">{{ icon }}</span>
+          </ng-container>
+          <ng-container *ngIf="!$any(step)['icon']">{{ i + 1 }}</ng-container>
+        </ng-template>
+      </button>
+      <span class="step-label" *ngIf="step?.label">{{ step.label }}</span>
+    </div>
+  </div>
+</div>
+<div class="stepper-content" [ngTemplateOutlet]="selected ? selected.content : null"></div>

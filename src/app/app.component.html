@@ -1,6 +1,32 @@
-<app-stepper [linear]="true">
-  <app-step label="Step Label 1"> <p>This is any content of "Step 1"</p> </app-step>
-  <app-step label="Step Label 2"> <p>This is any content of "Step 2"</p> </app-step>
-  <app-step label="Step Label 3"> <p>This is any content of "Step 3"</p> </app-step>
-  <app-step label="Step Label 4"> <p>This is any content of "Step 4"</p> </app-step>
-</app-stepper>
+<h1>Controls:</h1>
+  <ol>
+    <li>
+      <label for="isLinear">
+        <input type="checkbox" id="isLinear" [(ngModel)]="isLinear">
+        is Linear
+      </label>
+    </li>
+    <li>
+      <label for="isVertical">
+        <input type="checkbox" id="isVertical" [(ngModel)]="isVertical">
+        is Vertical
+      </label>
+    </li>
+  </ol>
+<hr>
+<app-stepper #stepperComponent [direction]="isVertical ? 'vertical' : 'horizontal'" [linear]="isLinear" [steps]="steps"></app-stepper>
+<hr>
+<pre><code>SelectedIndex: {{stepperComponent.selectedIndex}}</code></pre>
+
+<div [ngSwitch]="stepperComponent.selectedIndex">
+  <ng-container *ngSwitchCase="0"> Content for 0 </ng-container>
+  <ng-container *ngSwitchCase="1"> Content for 1 </ng-container>
+  <ng-container *ngSwitchCase="2"> Content for 2 </ng-container>
+  <ng-container *ngSwitchCase="3"> Content for 3 </ng-container>
+</div>
+
+
+
+<!--1. Steps as an object-->
+<!--2. Google font icon-->
+<!--3. Horizontal and Vertical direction-->

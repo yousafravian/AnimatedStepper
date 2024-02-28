@@ -1,28 +1,3 @@
-<div class="host-spacer">
-  <div #stepperWrapper class="stepper-wrapper">
-    <div class="loader" [style.width]="'calc(' + (this.percentageStep * this.selectedIndex) + '%' + ' - 75px)'"></div>
-    <div
-      class="step-container"
-      *ngFor="let step of steps; let i = index"
-    >
-      <button
-        class="step"
-        [class.active]="i === selectedIndex"
-        [class.semi-active]="selectedIndex > i"
-        [disabled]="linear && i > (selectedIndex + 1)"
-        [class.disabled]="linear && i > (selectedIndex + 1)"
-        (click)="selectStepByIndex(i)"
-      >
-        <ng-container *ngIf="i < selectedIndex else nonCheckedTmpl">
-          <span class="material-symbols-outlined">done</span>
-        </ng-container>
-        <ng-template #nonCheckedTmpl>
-          <ng-container *ngIf="$any(step)['icon'] as icon" [ngTemplateOutlet]="icon"></ng-container>
-          <ng-container *ngIf="!$any(step)['icon']">{{ i + 1 }}</ng-container>
-        </ng-template>
-      </button>
-      <span class="step-label" *ngIf="step?.label">{{ step.label }}</span>
-    </div>
-  </div>
-</div>
-<div class="stepper-content" [ngTemplateOutlet]="selected ? selected.content : null"></div>
+<app-steps-wrapper [(selectedIndex)]="selectedIndex" [direction]="direction" [linear]="linear">
+  <app-step *ngFor="let step of steps" [icon]="step.iconCss" [label]="step.label"></app-step>
+</app-steps-wrapper>

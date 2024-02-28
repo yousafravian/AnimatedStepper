@@ -1,16 +1,33 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {StepsModel} from "./stepper/steps-wrapper/step/steps.model";
 import {StepperComponent} from "./stepper/stepper.component";
-import {CdkStepperModule} from "@angular/cdk/stepper";
-import {StepComponent} from "./stepper/step/step.component";
+import {NgSwitch, NgSwitchCase} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, StepperComponent, CdkStepperModule, StepComponent],
   templateUrl: './app.component.html',
+  imports: [
+    StepperComponent,
+    NgSwitch,
+    NgSwitchCase,
+    FormsModule
+  ],
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AnimatedStepper';
+  public steps: StepsModel[] = [
+    {iconCss: 'menu', label: 'Orders'},
+    {iconCss: 'menu', label: 'Review'},
+    {label: 'Packing'},
+    {iconCss: 'menu', label: 'Shipping'},
+    {iconCss: 'menu', label: 'Extra'}
+  ];
+
+
+  // Test controls
+  isLinear: boolean = false;
+  isVertical: boolean = false;
+
 }

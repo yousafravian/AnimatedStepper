@@ -1,4 +1,4 @@
-import {Component, Input, TemplateRef} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CdkStep, CdkStepperModule} from "@angular/cdk/stepper";
 
@@ -13,5 +13,5 @@ import {CdkStep, CdkStepperModule} from "@angular/cdk/stepper";
   ]
 })
 export class StepComponent extends CdkStep {
-  @Input() icon?: TemplateRef<any>;
+  @Input() icon?: string;
 }

@@ -1,44 +1,23 @@
-import {
-  AfterContentInit,
-  Component,
-  ElementRef,
-  inject,
-  Renderer2,
-  ViewChild
-} from '@angular/core';
-import {NgFor, NgIf, NgTemplateOutlet} from '@angular/common';
-import {CdkStepper, CdkStepperModule} from "@angular/cdk/stepper";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {NgForOf} from '@angular/common';
+import {StepsWrapperComponent} from "./steps-wrapper/steps-wrapper.component";
+import {StepsModel} from "./steps-wrapper/step/steps.model";
+import {StepComponent} from "./steps-wrapper/step/step.component";
 
 @Component({
   selector: 'app-stepper',
   standalone: true,
-  imports: [NgTemplateOutlet, CdkStepperModule, NgFor, NgIf],
   templateUrl: './stepper.component.html',
-  styleUrls: ['./stepper.component.scss'],
-  providers: [{provide: CdkStepper, useExisting: StepperComponent}],
+  imports: [
+    StepsWrapperComponent,
+    StepComponent,
+    NgForOf
+  ],
+  styleUrls: ['./stepper.component.scss']
 })
-export class StepperComponent extends CdkStepper implements AfterContentInit {
-  @ViewChild('stepperWrapper') el?: ElementRef<HTMLDivElement>;
-
-  renderer = inject(Renderer2);
-
-  transformStyle = `translate(-${100}%, -${50}%);`;
-
-  percentageStep = 100;
-
-  selectStepByIndex(index: number): void {
-    this.selectedIndex = index;
-    this.setLoaderStyles();
-  }
-
-  override ngAfterContentInit() {
-    super.ngAfterContentInit();
-  }
-
-  private setLoaderStyles() {
-    this.percentageStep = this.steps?.length ? (100 / (this.steps.length - 1)) : 0;
-    this.transformStyle = `translate(${-100 + (this.percentageStep * this.selectedIndex)}%, -${50}%);`;
-    this.renderer.setStyle(this.el?.nativeElement, '--loading-positioning', this.transformStyle);
-    this.el?.nativeElement.style.setProperty('--loading-positioning', this.transformStyle)
-  }
+export class StepperComponent {
+  @Input() steps: StepsModel[] = [];
+  @Input() linear: boolean = false;
+  @Input() direction: 'vertical' | 'horizontal' = 'horizontal';
+  selectedIndex: number = 0;
 }
