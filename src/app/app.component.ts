@@ -17,7 +17,8 @@ export class AppComponent {
 
 
   // Test controls
-  isLinear: boolean = false;
-  isVertical: boolean = false;
+  isLinear = false;
+  isVertical = false;
+  selectedIndex = 2;
 
 }

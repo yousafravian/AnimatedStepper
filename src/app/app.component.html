@@ -14,9 +14,9 @@
     </li>
   </ol>
 <hr>
-<app-stepper #stepperComponent [direction]="isVertical ? 'vertical' : 'horizontal'" [linear]="isLinear" [steps]="steps"></app-stepper>
+<app-stepper #stepperComponent [(selectedIndex)]="selectedIndex" [direction]="isVertical ? 'vertical' : 'horizontal'" [linear]="isLinear" [steps]="steps"></app-stepper>
 <hr>
-<pre><code>SelectedIndex: {{stepperComponent.selectedIndex}}</code></pre>
+<pre><code>SelectedIndex: {{selectedIndex}}</code></pre>
 
 <div [ngSwitch]="stepperComponent.selectedIndex">
   <ng-container *ngSwitchCase="0"> Content for 0 </ng-container>

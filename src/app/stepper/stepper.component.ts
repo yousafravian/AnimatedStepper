@@ -13,5 +13,7 @@ export class StepperComponent {
   @Input() steps: StepsModel[] = [];
   @Input() linear: boolean = false;
   @Input() direction: 'vertical' | 'horizontal' = 'horizontal';
-  selectedIndex: number = 0;
+  @Input() selectedIndex: number = 0;
+
+  @Output() selectedIndexChange = new EventEmitter<number>();
 }
