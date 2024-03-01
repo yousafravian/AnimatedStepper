@@ -36,6 +36,7 @@
 .stepper-wrapper {
   --primary-color: #6750A3;
   --outline-color: white;   //White Border color Rounded
+  --outline-width: 3px;   //White border width
   --path-color: rgb(228, 55, 55);
 
   --step-background: lightgray;
@@ -60,7 +61,7 @@
     max-width: calc(100% - 150px);
     background: var(--primary-color);
     z-index: -1;
-    top: calc(var(--step-dimension) - 2px);
+    top: calc(((var(--step-dimension) / 2)) + 10px);
   }
 
   &::before {
@@ -68,7 +69,7 @@
     position: absolute;
     height: 1px;
     background: var(--path-color);
-    top: calc(var(--step-dimension) - 2px);
+    top: calc(((var(--step-dimension) / 2)) + 10px);
     z-index: 0;
     width: calc(100% - 150px);
     left: 75px;
@@ -92,7 +93,7 @@
       aspect-ratio: 1/1;
       cursor: pointer;
       position: relative;
-      outline: 5px solid var(--outline-color);
+      outline: var(--outline-width) solid var(--outline-color);
       display: flex;
       align-items: center;
       justify-content: center;
