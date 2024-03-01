@@ -12,14 +12,13 @@ import {StepsModel} from "./step/steps.model";
 
 @Component({
   selector: 'app-steps-wrapper',
-  standalone: true,
-  imports: [NgTemplateOutlet, CdkStepperModule, NgFor, NgIf],
   templateUrl: './steps-wrapper.component.html',
   styleUrls: ['./steps-wrapper.component.scss'],
   providers: [{provide: CdkStepper, useExisting: StepsWrapperComponent}],
 })
 export class StepsWrapperComponent extends CdkStepper implements AfterContentInit {
   @ViewChild('stepperWrapper') el?: ElementRef<HTMLDivElement>;
+  @ViewChild('stepContainerEl') stepContainerEl?: ElementRef<HTMLDivElement>;
 
   @Input() direction!: "vertical" | "horizontal";
 

@@ -35,13 +35,14 @@
 
 .stepper-wrapper {
   --primary-color: #6750A3;
-  --outline-color: white;
-  --path-color: grey;
+  --outline-color: white;   //White Border color Rounded
+  --path-color: rgb(228, 55, 55);
 
   --step-background: lightgray;
   --step-color: dimgray;
   --step-active-color: white;
   --step-disabled: lightgrey;
+  --step-dimension: 25px;
 
   position: relative;
   display: flex;
@@ -56,9 +57,10 @@
     height: 2px;
     left: 75px;
     background: var(--primary-color);
-    transform: translateY(20px);
     max-width: calc(100% - 150px);
+    background: var(--primary-color);
     z-index: -1;
+    top: calc(var(--step-dimension) - 2px);
   }
 
   &::before {
@@ -66,8 +68,8 @@
     position: absolute;
     height: 1px;
     background: var(--path-color);
-    transform: translateY(20px);
-    z-index: -1;
+    top: calc(var(--step-dimension) - 2px);
+    z-index: 0;
     width: calc(100% - 150px);
     left: 75px;
   }
@@ -84,16 +86,21 @@
       background: var(--step-background);
       color: var(--step-color);
       border-radius: 50px;
-      min-width: 40px;
-      min-height: 40px;
-      max-width: 100px;
-      max-height: 100px;
+      width: var(--step-dimension);
+      height: var(--step-dimension);
       border: none;
       aspect-ratio: 1/1;
       cursor: pointer;
       position: relative;
       outline: 5px solid var(--outline-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
 
+      span {
+        font-size: 14px;
+      }
 
       &:not(.active,.semi-active):hover {
         background: darkgray;
@@ -120,6 +127,7 @@
       &.disabled {
         background: var(--step-disabled);
         pointer-events: none;
+        opacity: 1 !important;
       }
 
       &::after {

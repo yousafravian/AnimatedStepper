@@ -4,8 +4,6 @@ import {CdkStep, CdkStepperModule} from "@angular/cdk/stepper";
 
 @Component({
   selector: 'app-step',
-  standalone: true,
-  imports: [CommonModule, CdkStepperModule],
   templateUrl: './step.component.html',
   styleUrls: ['./step.component.scss'],
   providers: [

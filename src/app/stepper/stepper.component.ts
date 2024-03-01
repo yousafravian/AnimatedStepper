@@ -6,13 +6,7 @@ import {StepComponent} from "./steps-wrapper/step/step.component";
 
 @Component({
   selector: 'app-stepper',
-  standalone: true,
   templateUrl: './stepper.component.html',
-  imports: [
-    StepsWrapperComponent,
-    StepComponent,
-    NgForOf
-  ],
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent {

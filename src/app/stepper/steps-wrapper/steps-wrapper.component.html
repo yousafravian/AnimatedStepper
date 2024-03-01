@@ -1,8 +1,9 @@
 <div class="host-spacer" [class.vertical]="direction ==='vertical'">
   <div #stepperWrapper class="stepper-wrapper">
-    <div *ngIf="direction === 'vertical'" class="loader" [style.height]="'calc(' + (this.percentageStep * this.selectedIndex) + '%' + ' - 25px)'"></div>
-    <div *ngIf="direction === 'horizontal'" class="loader" [style.width]="'calc(' + (this.percentageStep * this.selectedIndex) + '%' + ' - 27px)'"></div>
+    <div *ngIf="direction === 'vertical'" class="loader" [style.height]="'calc(' + ((stepContainerEl?.nativeElement?.getBoundingClientRect()?.width ?? 0) * this.selectedIndex) + 'px'"></div>
+    <div *ngIf="direction === 'horizontal'" class="loader" [style.width]="'calc(' + ((stepContainerEl?.nativeElement?.getBoundingClientRect()?.width ?? 0) * this.selectedIndex) + 'px'"></div>
     <div
+      #stepContainerEl
       class="step-container"
       *ngFor="let step of steps; let i = index"
     >
