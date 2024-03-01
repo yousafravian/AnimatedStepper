@@ -12,10 +12,11 @@
 
       .loader {
         transition: 2s cubic-bezier(0.42, 0, 0.58, 1);
-        height: 0;
+        height: auto;
         width: 2px;
-        left: 25px;
-        top: 0;
+        left: calc(((var(--step-dimension) / 2)) + 5px);
+        max-height: calc(100% - 20px);
+        top: 12px;
       }
 
       .step-container {
@@ -25,9 +26,11 @@
 
       &:before {
         transform: none;
-        height: calc(100% - 25px);
+        top: 12px;
+        bottom: 12px;
         width: 1px;
-        left: 25px;
+        height: auto;
+        left: calc(((var(--step-dimension) / 2)) + 5px);
       }
     }
   }
@@ -49,19 +52,19 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 5px;
+  overflow: auto;
 
   .loader {
     position: absolute;
     transition: 2s cubic-bezier(0.42, 0, 0.58, 1);
     content: '';
-    width: 0;
     height: 2px;
-    left: 75px;
     background: var(--primary-color);
-    max-width: calc(100% - 150px);
+    max-width: calc(100% - 20px);
     background: var(--primary-color);
-    z-index: -1;
+    z-index: 0;
     top: calc(((var(--step-dimension) / 2)) + 10px);
+    left: 15px;
   }
 
   &::before {
@@ -71,13 +74,21 @@
     background: var(--path-color);
     top: calc(((var(--step-dimension) / 2)) + 10px);
     z-index: 0;
-    width: calc(100% - 150px);
-    left: 75px;
+    left: 15px;
+    right: 15px;
   }
 
   .step-container {
 
-    width: 150px;
+    //&.first {
+    //  margin-left: 75px;
+    //}
+    //
+    //&.last {
+    //  margin-rightstly: 75px;
+    //}
+
+    width: fit-content;
     display: flex;
     flex-direction: column;
     gap: 5px;

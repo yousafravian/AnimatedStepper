@@ -1,11 +1,14 @@
+<pre><code>{{ percentageStep }}</code></pre>
 <div class="host-spacer" [class.vertical]="direction ==='vertical'">
   <div #stepperWrapper class="stepper-wrapper">
-    <div *ngIf="direction === 'vertical'" class="loader" [style.height]="'calc(' + ((stepContainerEl?.nativeElement?.getBoundingClientRect()?.width ?? 0) * this.selectedIndex) + 'px'"></div>
-    <div *ngIf="direction === 'horizontal'" class="loader" [style.width]="'calc(' + ((stepContainerEl?.nativeElement?.getBoundingClientRect()?.width ?? 0) * this.selectedIndex) + 'px'"></div>
+    <div *ngIf="direction === 'vertical'" class="loader" [style.bottom]="'calc(' + (100 - (this.percentageStep * this.selectedIndex)) + '%'"></div>
+    <div *ngIf="direction === 'horizontal'" class="loader" [style.right]="'calc(' + (100 - (this.percentageStep * this.selectedIndex)) + '%'"></div>
     <div
       #stepContainerEl
       class="step-container"
-      *ngFor="let step of steps; let i = index"
+      [class.first]="isFirst"
+      [class.last]="isLast"
+      *ngFor="let step of steps; let i = index; let isFirst = first; let isLast = last"
     >
       <button
         class="step"

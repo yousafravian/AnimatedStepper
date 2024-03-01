@@ -7,13 +7,21 @@ import {StepsModel} from "./stepper/steps-wrapper/step/steps.model";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public steps: StepsModel[] = [
-    {iconCss: 'menu', label: 'Orders'},
-    {iconCss: 'menu', label: 'Review'},
-    {iconCss: 'menu', label: 'Packing'},
-    {iconCss: 'menu', label: 'Shipping'},
-    {iconCss: 'menu', label: 'Extra'}
-  ];
+  public steps: StepsModel[] = [];
+
+  constructor() {
+    setTimeout(() => {
+      this.steps = [
+        {iconCss: 'menu', label: 'Orders'},
+        {iconCss: 'menu', label: 'Review'},
+        {iconCss: 'menu', label: 'Packing'},
+        {iconCss: 'menu', label: 'Shipping'},
+        {iconCss: 'menu', label: 'Extra'},
+        {iconCss: 'menu', label: 'Extra'},
+        {iconCss: 'menu', label: 'Extra'}
+      ];
+    }, 1000);
+  }
 
 
   // Test controls

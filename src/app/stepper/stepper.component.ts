@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {StepsWrapperComponent} from "./steps-wrapper/steps-wrapper.component";
 import {StepsModel} from "./steps-wrapper/step/steps.model";
@@ -10,10 +10,20 @@ import {StepComponent} from "./steps-wrapper/step/step.component";
   styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent {
-  @Input() steps: StepsModel[] = [];
+  @ViewChild('stepsWrapperComponent') wrapper!: StepsWrapperComponent;
+
+  _steps: StepsModel[] = [];
+  @Input() set steps(stepsVal: StepsModel[]) {
+    this._steps = stepsVal;
+
+    setTimeout(() => {
+      if(this._steps?.length > this.selectedIndex) {
+        this.wrapper.selectStepByIndex(this.selectedIndex);
+      }
+    });
+  }
+  @Input() selectedIndex = 0;
   @Input() linear: boolean = false;
   @Input() direction: 'vertical' | 'horizontal' = 'horizontal';
-  @Input() selectedIndex: number = 0;
-
   @Output() selectedIndexChange = new EventEmitter<number>();
 }
